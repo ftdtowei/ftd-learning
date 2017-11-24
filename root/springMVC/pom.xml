@@ -1,22 +1,12 @@
-<?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.ftd</groupId>
+    <groupId>com.gg</groupId>
     <artifactId>root</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  
   <artifactId>springMVC</artifactId>
-  <name>springMVC</name>
-
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
- 
- 
+  
   <dependencies>
     <!-- start spring -->
     <dependency>
@@ -30,13 +20,13 @@
 
     <!-- start 内部模块引用 -->
     <dependency>
-      <groupId>com.ftd</groupId>
+      <groupId>com.gg</groupId>
       <artifactId>dubboBase</artifactId>
       <version>${project.parent.version}</version>
       <type>pom</type>
     </dependency>
     <dependency>
-      <groupId>com.ftd</groupId>
+      <groupId>com.gg</groupId>
       <artifactId>core</artifactId>
       <version>${project.parent.version}</version>
     </dependency>
@@ -84,23 +74,5 @@
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-webapp</artifactId>
     </dependency>
-    <!-- end  -->
-
-    <!-- start 必选第三方包调用（私服） -->
-    <!-- end  -->
-
-    <!-- start Junit -->
-    <!-- end  -->
-
-
-  </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
+    </dependencies>
 </project>
