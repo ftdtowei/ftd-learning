@@ -30,6 +30,11 @@
       <artifactId>core</artifactId>
       <version>${project.parent.version}</version>
     </dependency>
+        <dependency>
+      <groupId>com.gg</groupId>
+      <artifactId>db</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
     <!-- end  -->
 
     <!-- start 必选第三方包调用（中央仓库） -->
