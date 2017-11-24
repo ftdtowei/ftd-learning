@@ -4,4 +4,85 @@
   <artifactId>root</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
+  <modules>
+  	<module>../springMVC</module>
+  	<module>core</module>
+  	<module>springMVC</module>
+  </modules>
+  
+ <properties>
+    <spring.version>4.3.4.RELEASE</spring.version>
+    <spring.data.redis>1.7.1.RELEASE</spring.data.redis>
+    <slf4j.version>1.7.12</slf4j.version>
+    <jetty.version>9.2.19.v20160908</jetty.version>
+    <jetty.plugin.version>6.1.26</jetty.plugin.version>
+    <dubbo.version>2.5.3</dubbo.version>
+    <fastjson.version>1.2.7</fastjson.version>
+ </properties> 
+  <dependencies>
+ 
+  <!-- spring 基础包 -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jms</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-redis</artifactId>
+        <version>${spring.data.redis}</version>
+      </dependency>
+      <!--ali  -->
+       <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>dubbo</artifactId>
+        <version>${dubbo.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>${fastjson.version}</version>
+      </dependency>
+      <!-- jetty -->
+      <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-server</artifactId>
+        <version>${jetty.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-webapp</artifactId>
+        <version>${jetty.version}</version>
+      </dependency>
+  </dependencies>
 </project>
