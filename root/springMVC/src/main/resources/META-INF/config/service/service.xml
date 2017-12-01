@@ -9,16 +9,16 @@
             http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
             http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">  
-  
-    <bean id="httpServer" class="com.gg.springMVC.HttpServer" init-method="start" >
-    	<property name="serverPort" value="${gg.server.port}"/>
-    	<property name="webRoot" value="${gg.server.webroot}"/>
-    </bean>
+
     
-    <import resource="classpath:META-INF/config/http/view.xml"/>
-    <import resource="classpath:META-INF/config/dubbo/dubboservice.xml"/>
-    <import resource="classpath:META-INF/config/action/action.xml"/>
-    <import resource="classpath:META-INF/config/service/service.xml"/>
-    <import resource="classpath:META-INF/config/config.xml"/>
-    <import resource="classpath:META-INF/config/dbconfig.xml"/>
+    	<bean id="HttpGetTitle" class="com.gg.service.HttpGetTitle">
+		</bean>
+	
+    	<bean id="MatchProcess" class="com.gg.service.MatchProcess">
+    	    <property name="tagcache" ref="tagCache"></property>
+		</bean>
+		
+    	<bean id="tagCache" class="com.gg.cache.tagCache" init-method="init">
+    	    <property name="sqlMap" ref="sqlMapClientTemplate" />
+		</bean>
 </beans>

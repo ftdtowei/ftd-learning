@@ -5,5 +5,12 @@
 
 <sqlMap namespace="MVC">
 
-	 
+   <resultMap class="java.util.HashMap" id="TagsResult">
+		<result property="Name" column="tagName" />
+		<result property="Id" column="tagId" />
+		<result property="Keys" column="tagKey" />
+	</resultMap>
+	 <select id="queryAllTags" resultMap="TagsResult" >
+		select tagId,tagName,tagKey from m_tag
+	</select>
 </sqlMap>

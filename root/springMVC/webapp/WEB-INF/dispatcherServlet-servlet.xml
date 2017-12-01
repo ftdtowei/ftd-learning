@@ -9,7 +9,7 @@
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<props>
-				<!-- <prop key="demo.do">DemoAction</prop> -->
+				<prop key="analyze.do">analyzeAction</prop> 
 			</props>
 		</property>
 		<property name="interceptors">

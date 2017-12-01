@@ -12,5 +12,10 @@
 <!--   
     <bean id="DemoAction" class="com.csii.mc.im.server.action.DemoAction">
 	</bean> -->
+	<bean id="analyzeAction" class="com.gg.action.analyzeAction">
+	    <property name="httpGetTitle" ref="HttpGetTitle" />
+	    <property name="matchProcess" ref="MatchProcess" />  
+	    <property name="sqlMap" ref="sqlMapClientTemplate" />
+	</bean>
 	
 </beans>
