@@ -1,8 +1,17 @@
 package com.gg.action;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +28,7 @@ public class analyzeAction extends AbstractController{
 	@Override
 	protected Map<String, Object> handleInner(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		
+//		(?<=A).*?(?=B)
 		Map result = new HashMap();
 		String url = (String) request.getAttribute("Url");
 		
@@ -43,6 +52,102 @@ public class analyzeAction extends AbstractController{
 		this.matchProcess = matchProcess;
 	}
 	
+	
+	
+	private static String readString()  
+	  
+	{  
+	  
+	    String str="";  
+	  
+	    File file=new File("d://CSII/bookmarks_2017_12_16.html");  
+	  
+	    try {  
+	  
+	        FileInputStream in=new FileInputStream(file);  
+	  
+	        // size  为字串的长度 ，这里一次性读完  
+	  
+	        int size=in.available();  
+	  
+	        byte[] buffer=new byte[size];  
+	  
+	        in.read(buffer);  
+	  
+	        in.close();  
+	  
+	        str=new String(buffer,"UTF-8");  
+	  
+	    } catch (IOException e) {  
+	  
+	        // TODO Auto-generated catch block  
+	  
+	        return null;  
+	  
+	    }  
+	  
+	    return str;  
+	  
+	} 
+	
+public static List<String> completeMatch(String htmlUrl){
+        
+    	
+    	 Pattern pa = Pattern.compile("[a-zA-z]+");
+    	 Matcher ma = pa.matcher(htmlUrl);
+    	List<String> keys = new ArrayList<String>();
+    	
+    	 while(ma.find()){
+    			keys.add(ma.group(0));  //获取标题中的关键字
+    		} 
+    	
+
+    	 
+		return keys;
+
+    }
+	
+	public static void main(String[] args) {
+		String s = readString();
+//		System.out.print(s);
+   	 Pattern pa = Pattern.compile("(?<=>).*?(?=<)");
+   	 Matcher ma = pa.matcher(s);
+   	List<String> keys = new ArrayList<String>();
+   	String key = new String();
+   	
+   	 while(ma.find()){
+   		 if(ma.group(0).equals("")){
+   			 continue;
+   		 }
+   			keys.add(ma.group(0));  //获取标题中的关键字
+   			
+   		} 
+   	 for(String k : keys){
+   		 List<String> l = completeMatch(k);
+   		 for(String s1 : l){
+   			key = key + s1+':';
+   		 }
+   	 }
+   	 
+   	System.out.println(key);
+   	
+   	try {  
+        File file = new File("D://CSII/key.txt");  
+        PrintStream ps = new PrintStream(new FileOutputStream(file));  
+//        ps.println("http://www.jb51.net");// 往文件里写入字符串  
+//        ps.append(key);// 在已有的基础上添加字符串  
+      	 for(String k : keys){
+       		 List<String> l = completeMatch(k);
+       		 for(String s1 : l){
+       			ps.println(s1);
+       		 }
+       	 }
+    } catch (FileNotFoundException e) {  
+        // TODO Auto-generated catch block  
+        e.printStackTrace();  
+    }  
+   	 
+	}
 	
 
 }
