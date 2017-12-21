@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"  
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" 
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"  
+    xmlns:aop="http://www.springframework.org/schema/aop"  
+    xsi:schemaLocation="  
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+            http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">  
+  
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${redis.maxTotal}" />
+        <property name="maxIdle" value="${redis.maxIdle}" />
+        <property name="maxWaitMillis" value="${redis.maxWait}" />
+    </bean>
+	
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" >
+        <!-- <constructor-arg ref="sentinelConfig" />
+        <constructor-arg ref="clusterConfig" /> -->
+        <constructor-arg ref="jedisPoolConfig" />
+    	<property name="timeout" value="${redis.timeout}"></property>
+    	<property name="hostName" value="${redis.host}"></property>
+    	<property name="port" value="${redis.port}"></property>
+    	<property name="password" value="${redis.pass}"></property>
+    </bean>
+
+    <bean id="redisOperations" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory" ref="jedisConnectionFactory"></property>
+        <property name="defaultSerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+    </bean>
+
+   <!--  <bean id="redisOperationsV2" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory"   ref="jedisConnectionFactory" />
+        <property name="keySerializer" ref="keySerializer" />
+        <property name="valueSerializer" ref="valueSerializer" />
+    </bean>     
+    
+    <bean id="keySerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer">
+    </bean>   
+    
+    <bean id="valueSerializer" class="com.csii.mc.redis.serializer.McMessageSerializer">
+    </bean> -->
+    
+    
+    <!-- <bean id="sentinelConfig" class="org.springframework.data.redis.connection.RedisSentinelConfiguration">
+    	<constructor-arg value="mymaster" />
+    	<constructor-arg>
+    		<set>
+    			<value>192.168.0.241:26379</value>
+    			<value>192.168.0.242:26379</value>
+    		</set>
+    	</constructor-arg>
+    </bean> -->
+    
+	<!-- <bean id="clusterRedisNodes"   class="org.springframework.data.redis.connection.RedisNode">
+		<constructor-arg value="192.168.186.146" />
+		<constructor-arg value="7000" type="int" />
+	</bean>
+	<bean id="clusterRedisNodes1"   class="org.springframework.data.redis.connection.RedisNode">
+		<constructor-arg value="192.168.186.146" />
+		<constructor-arg value="7001" type="int" />
+	</bean>
+	<bean id="clusterRedisNodes2"   class="org.springframework.data.redis.connection.RedisNode">
+		<constructor-arg value="192.168.186.146" />
+		<constructor-arg value="7002" type="int" />
+	</bean>
+	<bean id="clusterRedisNodes3"   class="org.springframework.data.redis.connection.RedisNode">
+		<constructor-arg value="192.168.186.146" />
+		<constructor-arg value="7003" type="int" />
+	</bean>
+	<bean id="clusterRedisNodes4"   class="org.springframework.data.redis.connection.RedisNode">
+		<constructor-arg value="192.168.186.146" />
+		<constructor-arg value="7004" type="int" />
+	</bean>
+	<bean id="clusterRedisNodes5"   class="org.springframework.data.redis.connection.RedisNode">
+		<constructor-arg value="192.168.186.146" />
+		<constructor-arg value="7005" type="int" />
+	</bean>
+	
+	<bean id="clusterConfig"   class="org.springframework.data.redis.connection.RedisClusterConfiguration">
+		<property name="clusterNodes">
+			<set>
+				<ref bean="clusterRedisNodes"/>
+				<ref bean="clusterRedisNodes1"/>
+				<ref bean="clusterRedisNodes2"/>
+				<ref bean="clusterRedisNodes3"/>
+				<ref bean="clusterRedisNodes4"/>
+				<ref bean="clusterRedisNodes5"/>
+			</set>
+		</property>
+	</bean> -->
+
+</beans>

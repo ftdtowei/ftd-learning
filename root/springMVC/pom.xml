@@ -30,9 +30,14 @@
       <artifactId>core</artifactId>
       <version>${project.parent.version}</version>
     </dependency>
-        <dependency>
+    <dependency>
       <groupId>com.gg</groupId>
       <artifactId>db</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.gg</groupId>
+      <artifactId>redisBase</artifactId>
       <version>${project.parent.version}</version>
     </dependency>
     <!-- end  -->

@@ -38,9 +38,9 @@ public class analyzeAction extends AbstractController{
 			return result;
 		}
 		
-		List res = MatchProcess.completeMatch(title);
+		Map res = MatchProcess.completeMatch(title);
 		
-		result.put("List", res);
+		result.put("Result", res);
 		return result;
 	}
 
@@ -66,7 +66,7 @@ public class analyzeAction extends AbstractController{
 	  
 	        FileInputStream in=new FileInputStream(file);  
 	  
-	        // size  Îª×Ö´®µÄ³¤¶È £¬ÕâÀïÒ»´ÎÐÔ¶ÁÍê  
+	        // size  Îªï¿½Ö´ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½  
 	  
 	        int size=in.available();  
 	  
@@ -98,7 +98,7 @@ public static List<String> completeMatch(String htmlUrl){
     	List<String> keys = new ArrayList<String>();
     	
     	 while(ma.find()){
-    			keys.add(ma.group(0));  //»ñÈ¡±êÌâÖÐµÄ¹Ø¼ü×Ö
+    			keys.add(ma.group(0));  //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ¹Ø¼ï¿½ï¿½ï¿½
     		} 
     	
 
@@ -119,7 +119,7 @@ public static List<String> completeMatch(String htmlUrl){
    		 if(ma.group(0).equals("")){
    			 continue;
    		 }
-   			keys.add(ma.group(0));  //»ñÈ¡±êÌâÖÐµÄ¹Ø¼ü×Ö
+   			keys.add(ma.group(0));  //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ¹Ø¼ï¿½ï¿½ï¿½
    			
    		} 
    	 for(String k : keys){
@@ -134,8 +134,8 @@ public static List<String> completeMatch(String htmlUrl){
    	try {  
         File file = new File("D://CSII/key.txt");  
         PrintStream ps = new PrintStream(new FileOutputStream(file));  
-//        ps.println("http://www.jb51.net");// ÍùÎÄ¼þÀïÐ´Èë×Ö·û´®  
-//        ps.append(key);// ÔÚÒÑÓÐµÄ»ù´¡ÉÏÌí¼Ó×Ö·û´®  
+//        ps.println("http://www.jb51.net");// ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½  
+//        ps.append(key);// ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½  
       	 for(String k : keys){
        		 List<String> l = completeMatch(k);
        		 for(String s1 : l){

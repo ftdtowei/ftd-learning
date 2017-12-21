@@ -1,7 +1,9 @@
 package com.gg.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,7 +14,8 @@ public class MatchProcess {
 	private static tagCache tagcache;
 	
 	
-	public static List completeMatch(String htmlUrl){
+	public static Map completeMatch(String htmlUrl){
+		Map result =new HashMap();
         
         List<Tag> tags= tagcache.getTagList();  //从缓存获取
 //        Tag t =new Tag();
@@ -50,9 +53,13 @@ public class MatchProcess {
     	 }
     	 
     	if(match.size()== 0){
-    		return keys;   //如果没有匹配的关键字 便于关键字的新增
+    		result.put("List", keys);
+    		result.put("Key", "New");
+    		return result;   //如果没有匹配的关键字 便于关键字的新增
     	}
-		return match;
+    	result.put("List", match);
+		result.put("Key", "Match");
+		return result;
 
     }
 

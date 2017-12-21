@@ -21,4 +21,5 @@
     <import resource="classpath:META-INF/config/service/service.xml"/>
     <import resource="classpath:META-INF/config/config.xml"/>
     <import resource="classpath:META-INF/config/dbconfig.xml"/>
+    <import resource="classpath:META-INF/config/redis-config.xml"/>
 </beans>
